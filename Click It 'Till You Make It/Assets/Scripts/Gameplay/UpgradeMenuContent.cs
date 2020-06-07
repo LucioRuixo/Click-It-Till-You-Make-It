@@ -8,12 +8,12 @@ public class UpgradeMenuContent : MonoBehaviour
 
     void OnEnable()
     {
-        GameManager.onUpgradeInitialization += SetContentHeight;
+        UpgradeManager.onUpgradeInitialization += SetContentHeight;
     }
 
     void OnDisable()
     {
-        GameManager.onUpgradeInitialization -= SetContentHeight;
+        UpgradeManager.onUpgradeInitialization -= SetContentHeight;
     }
 
     void SetContentHeight(int upgradeAmount)

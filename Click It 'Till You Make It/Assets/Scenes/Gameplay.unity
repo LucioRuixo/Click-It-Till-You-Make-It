@@ -2767,7 +2767,7 @@ GameObject:
   - component: {fileID: 2117948547}
   - component: {fileID: 2117948546}
   m_Layer: 0
-  m_Name: Game Manager
+  m_Name: Upgrade Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2788,7 +2788,16 @@ MonoBehaviour:
   upgradeButtonPrefab: {fileID: 3810600156117958742, guid: e6658b549d44b2945bff6266da2488ce,
     type: 3}
   upgradeButtonContainer: {fileID: 1669422743}
-  upgradeAmount: 5
+  upgrades: []
+  amount: 5
+  baseCost: 10
+  costMultiplier: 5
+  baseNPS: 0.1
+  nPSMultiplier: 5
+  names:
+  - Primer upgd
+  - alto upgrade
+  - tremendo upgrade
 --- !u!4 &2117948547
 Transform:
   m_ObjectHideFlags: 0

@@ -3,9 +3,9 @@ using TMPro;
 
 public class Upgrade : MonoBehaviour
 {
-    new public string name;
+    [HideInInspector] public string _name;
     
-    public int amount;
+    int amount;
     
     public float numberPerSecond;
     public float cost;
@@ -51,7 +51,7 @@ public class Upgrade : MonoBehaviour
 
     void UpdateText()
     {
-        nameText.text = name;
+        nameText.text = _name;
         amountText.text = amount.ToString();
         costText.text = "$" + cost.ToString();
         numberPerSecondText.text = numberPerSecond.ToString() + " p/second";
