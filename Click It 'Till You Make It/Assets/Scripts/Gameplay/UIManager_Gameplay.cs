@@ -5,7 +5,7 @@ using TMPro;
 
 public class UIManager_Gameplay : MonoBehaviour
 {
-    int number;
+    float number;
 
     public Button pause;
 
@@ -13,16 +13,26 @@ public class UIManager_Gameplay : MonoBehaviour
 
     public TextMeshProUGUI numberText;
 
+    void OnEnable()
+    {
+        ClickButton.onNumberIncrease += UpdateNumberText;
+    }
+
     void Start()
     {
         number = 0;
         numberText.text = number.ToString();
     }
 
-    #region Gameplay
-    public void UpdateNumber()
+    void OnDisable()
     {
-        number++;
+        ClickButton.onNumberIncrease -= UpdateNumberText;
+    }
+
+    #region Gameplay
+    public void UpdateNumberText(int value)
+    {
+        number = value;
         numberText.text = number.ToString();
     }
 
