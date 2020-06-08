@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class UpgradeManager : MonoBehaviour
 {
+    float updateTimer;
+    float updateTimerTarget;
+    float increment;
+
     public GameObject upgradeButtonPrefab;
 
     public Transform upgradeButtonContainer;
@@ -11,6 +15,7 @@ public class UpgradeManager : MonoBehaviour
     public List<Upgrade> upgrades;
 
     public static event Action<int> onUpgradeInitialization;
+    public static event Action <float>onNumberUpdate;
 
     [Header("Upgrade properties")]
     public int amount;
@@ -25,24 +30,46 @@ public class UpgradeManager : MonoBehaviour
     void OnEnable()
     {
         onUpgradeInitialization += InitializeUpgrades;
+        Upgrade.onPurchase += UpdateIncrement;
     }
 
     void Start()
     {
+        updateTimer = 0f;
+        updateTimerTarget = 1f;
+        increment = 0f;
+
         if (onUpgradeInitialization != null)
             onUpgradeInitialization(amount);
+    }
+
+    void Update()
+    {
+        if (!GameManager.gamePaused)
+        {
+            updateTimer += Time.deltaTime;
+
+            if (updateTimer >= updateTimerTarget)
+            {
+                if (onNumberUpdate != null)
+                    onNumberUpdate(increment);
+
+                updateTimer -= updateTimerTarget;
+            }
+        }
     }
 
     void OnDisable()
     {
         onUpgradeInitialization -= InitializeUpgrades;
+        Upgrade.onPurchase -= UpdateIncrement;
     }
 
     void InitializeUpgrades(int upgradeAmount)
     {
         for (int i = 0; i < upgradeAmount; i++)
         {
-            upgrades.Add(Instantiate(upgradeButtonPrefab, upgradeButtonContainer).AddComponent<Upgrade>());
+            upgrades.Add(Instantiate(upgradeButtonPrefab, upgradeButtonContainer).GetComponent<Upgrade>());
 
             if (i == 0)
             {
@@ -60,5 +87,10 @@ public class UpgradeManager : MonoBehaviour
             else
                 upgrades[i]._name = "Upgrade " + (i + 1).ToString();
         }
+    }
+
+    void UpdateIncrement(float cost, float nPS)
+    {
+        increment += nPS;
     }
 }

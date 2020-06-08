@@ -1,19 +1,22 @@
 ﻿using UnityEngine;
 using TMPro;
+using System;
 
 public class Upgrade : MonoBehaviour
 {
     [HideInInspector] public string _name;
+
+    [HideInInspector] public int amount;
     
-    int amount;
-    
-    public float numberPerSecond;
-    public float cost;
-    
+     [HideInInspector] public float numberPerSecond;
+     [HideInInspector] public float cost;
+
     TextMeshProUGUI nameText;
     TextMeshProUGUI amountText;
     TextMeshProUGUI numberPerSecondText;
     TextMeshProUGUI costText;
+
+    public static event Action<float, float> onPurchase;
 
     void Start()
     {
@@ -27,40 +30,34 @@ public class Upgrade : MonoBehaviour
                 {
                     case "Name":
                         nameText = line.GetChild(j).GetComponent<TextMeshProUGUI>();
+                        nameText.text = _name;
                         break;
                     case "Amount":
                         amountText = line.GetChild(j).GetComponent<TextMeshProUGUI>();
+                        amountText.text = amount.ToString();
                         break;
                     case "Number Per Second":
                         numberPerSecondText = line.GetChild(j).GetComponent<TextMeshProUGUI>();
+                        numberPerSecondText.text = numberPerSecond.ToString() + " p/second";
                         break;
                     case "Cost":
                         costText = line.GetChild(j).GetComponent<TextMeshProUGUI>();
+                        costText.text = "$" + cost.ToString();
                         break;
                 }
             }
         }
-
-        UpdateText();
     }
 
-    void Update()
+    public void Purchase()
     {
-        UpdateText();
-    }
+        if (ClickButton.number >= cost)
+        {
+            amount++;
+            amountText.text = amount.ToString();
 
-    void UpdateText()
-    {
-        nameText.text = _name;
-        amountText.text = amount.ToString();
-        costText.text = "$" + cost.ToString();
-        numberPerSecondText.text = numberPerSecond.ToString() + " p/second";
-    }
-
-    public void Buy()
-    {
-        amount++;
-
-        amountText.text = amount.ToString();
+            if (onPurchase != null)
+                onPurchase(cost, numberPerSecond);
+        }
     }
 }

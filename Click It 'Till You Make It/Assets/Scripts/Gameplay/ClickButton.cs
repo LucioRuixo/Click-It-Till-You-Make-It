@@ -3,20 +3,48 @@ using UnityEngine;
 
 public class ClickButton : MonoBehaviour
 {
-    int number;
+    public static float number;
 
-    public static event Action<int> onNumberIncrease;
+    public static event Action onNumberIncrease;
+    public static event Action onUpgradePayment;
+
+    void OnEnable()
+    {
+        Upgrade.onPurchase += PayForUpgrade;
+
+        UpgradeManager.onNumberUpdate += IncreaseNumber;
+    }
 
     void Start()
     {
         number = 0;
     }
 
-    public void IncreaseNumber()
+    void OnDisable()
+    {
+        Upgrade.onPurchase -= PayForUpgrade;
+
+        UpgradeManager.onNumberUpdate -= IncreaseNumber;
+    }
+
+    void IncreaseNumber(float increment)
+    {
+        number += increment;
+    }
+
+    void PayForUpgrade(float cost, float nPS)
+    {
+        number -= cost;
+
+        if (onUpgradePayment != null)
+            onUpgradePayment();
+    }
+
+    public void IncreaseNumberOnClick()
     {
         number++;
 
         if (onNumberIncrease != null)
-            onNumberIncrease(number);
+            onNumberIncrease();
     }
 }
