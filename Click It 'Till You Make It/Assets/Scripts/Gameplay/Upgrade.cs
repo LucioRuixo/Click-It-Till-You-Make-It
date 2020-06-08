@@ -47,7 +47,7 @@ public class Upgrade : MonoBehaviour
                         break;
                     case "Number Per Second":
                         numberPerSecondText = line.GetChild(j).GetComponent<TextMeshProUGUI>();
-                        numberPerSecondText.text = numberPerSecond.ToString() + " p/second";
+                        numberPerSecondText.text = numberPerSecond.ToString("F2") + " p/second";
                         break;
                     case "Cost":
                         costText = line.GetChild(j).GetComponent<TextMeshProUGUI>();
