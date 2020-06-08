@@ -7,12 +7,18 @@ using System;
 public class UIManager_Gameplay : MonoBehaviour
 {
     float number;
+    float numberPerSecond;
 
     public Button pause;
+
+    public ClickButton clickButton;
 
     public GameObject pauseMenu;
 
     public TextMeshProUGUI numberText;
+    public TextMeshProUGUI nPSText;
+
+    public UpgradeManager upgradeManager;
 
     public static event Action<bool> onPause;
 
@@ -20,20 +26,27 @@ public class UIManager_Gameplay : MonoBehaviour
     {
         ClickButton.onNumberIncrease += UpdateNumberText;
         ClickButton.onUpgradePayment += UpdateNumberText;
+
         UpgradeManager.onNumberUpdate += UpdateNumberText;
+        UpgradeManager.onNPSUpdate += UpdateNPSText;
     }
 
     void Start()
     {
         number = 0;
+        numberPerSecond = 0;
+
         numberText.text = number.ToString();
+        nPSText.text = numberPerSecond.ToString("F1") + " p/second";
     }
 
     void OnDisable()
     {
         ClickButton.onNumberIncrease -= UpdateNumberText;
         ClickButton.onUpgradePayment -= UpdateNumberText;
+
         UpgradeManager.onNumberUpdate -= UpdateNumberText;
+        UpgradeManager.onNPSUpdate -= UpdateNPSText;
     }
 
     public void Pause(bool state)
@@ -45,9 +58,9 @@ public class UIManager_Gameplay : MonoBehaviour
     }
 
     #region Gameplay
-    public void UpdateNumberText()
+    void UpdateNumberText()
     {
-        number = ClickButton.number;
+        number = clickButton.number;
 
         if (number == Mathf.Round(number))
             numberText.text = number.ToString();
@@ -55,14 +68,20 @@ public class UIManager_Gameplay : MonoBehaviour
             numberText.text = number.ToString("F1");
     }
 
-    public void UpdateNumberText(float increment)
+    void UpdateNumberText(float increment)
     {
-        number = ClickButton.number;
+        number = clickButton.number;
 
         if (number == Mathf.Round(number))
             numberText.text = number.ToString();
         else
             numberText.text = number.ToString("F1");
+    }
+
+    void UpdateNPSText()
+    {
+        numberPerSecond = upgradeManager.numberPerSecond;
+        nPSText.text = numberPerSecond.ToString("F1") + " p/second";
     }
     #endregion
 

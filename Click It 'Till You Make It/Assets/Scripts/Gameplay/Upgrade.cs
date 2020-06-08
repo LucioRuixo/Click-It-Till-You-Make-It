@@ -8,8 +8,10 @@ public class Upgrade : MonoBehaviour
 
     [HideInInspector] public int amount;
     
-     [HideInInspector] public float numberPerSecond;
-     [HideInInspector] public float cost;
+    [HideInInspector] public float numberPerSecond;
+    [HideInInspector] public float cost;
+
+    ClickButton clickButton;
 
     TextMeshProUGUI nameText;
     TextMeshProUGUI amountText;
@@ -19,6 +21,13 @@ public class Upgrade : MonoBehaviour
     public static event Action<float, float> onPurchase;
 
     void Start()
+    {
+        clickButton = GameObject.Find("Click Button").GetComponent<ClickButton>();
+
+        InitializeText();
+    }
+
+    void InitializeText()
     {
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -51,7 +60,7 @@ public class Upgrade : MonoBehaviour
 
     public void Purchase()
     {
-        if (ClickButton.number >= cost)
+        if (clickButton.number >= cost)
         {
             amount++;
             amountText.text = amount.ToString();

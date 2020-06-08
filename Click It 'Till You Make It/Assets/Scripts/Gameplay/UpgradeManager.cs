@@ -6,7 +6,9 @@ public class UpgradeManager : MonoBehaviour
 {
     float updateTimer;
     float updateTimerTarget;
-    float increment;
+    public float numberPerSecond;
+
+    public GameManager gameManager;
 
     public GameObject upgradeButtonPrefab;
 
@@ -15,7 +17,8 @@ public class UpgradeManager : MonoBehaviour
     public List<Upgrade> upgrades;
 
     public static event Action<int> onUpgradeInitialization;
-    public static event Action <float>onNumberUpdate;
+    public static event Action<float> onNumberUpdate;
+    public static event Action onNPSUpdate;
 
     [Header("Upgrade properties")]
     public int amount;
@@ -30,14 +33,14 @@ public class UpgradeManager : MonoBehaviour
     void OnEnable()
     {
         onUpgradeInitialization += InitializeUpgrades;
-        Upgrade.onPurchase += UpdateIncrement;
+        Upgrade.onPurchase += UpdateNPS;
     }
 
     void Start()
     {
         updateTimer = 0f;
         updateTimerTarget = 1f;
-        increment = 0f;
+        numberPerSecond = 0f;
 
         if (onUpgradeInitialization != null)
             onUpgradeInitialization(amount);
@@ -45,14 +48,14 @@ public class UpgradeManager : MonoBehaviour
 
     void Update()
     {
-        if (!GameManager.gamePaused)
+        if (!gameManager.gamePaused)
         {
             updateTimer += Time.deltaTime;
 
             if (updateTimer >= updateTimerTarget)
             {
                 if (onNumberUpdate != null)
-                    onNumberUpdate(increment);
+                    onNumberUpdate(numberPerSecond);
 
                 updateTimer -= updateTimerTarget;
             }
@@ -62,7 +65,7 @@ public class UpgradeManager : MonoBehaviour
     void OnDisable()
     {
         onUpgradeInitialization -= InitializeUpgrades;
-        Upgrade.onPurchase -= UpdateIncrement;
+        Upgrade.onPurchase -= UpdateNPS;
     }
 
     void InitializeUpgrades(int upgradeAmount)
@@ -89,8 +92,11 @@ public class UpgradeManager : MonoBehaviour
         }
     }
 
-    void UpdateIncrement(float cost, float nPS)
+    void UpdateNPS(float cost, float nPS)
     {
-        increment += nPS;
+        numberPerSecond += nPS;
+
+        if (onNPSUpdate != null)
+            onNPSUpdate();
     }
 }

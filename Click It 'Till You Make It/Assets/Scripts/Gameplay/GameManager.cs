@@ -2,7 +2,7 @@
 
 public class GameManager : MonoBehaviour
 {
-    public static bool gamePaused;
+    public bool gamePaused;
 
     void OnEnable()
     {

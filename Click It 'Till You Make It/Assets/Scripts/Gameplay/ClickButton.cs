@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ClickButton : MonoBehaviour
 {
-    public static float number;
+    [HideInInspector] public float number;
 
     public static event Action onNumberIncrease;
     public static event Action onUpgradePayment;
