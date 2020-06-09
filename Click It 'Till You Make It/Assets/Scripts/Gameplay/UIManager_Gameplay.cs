@@ -36,8 +36,8 @@ public class UIManager_Gameplay : MonoBehaviour
         number = 0;
         numberPerSecond = 0;
 
-        numberText.text = number.ToString();
-        nPSText.text = numberPerSecond.ToString("F1") + " p/second";
+        numberText.text = "$" + number.ToString();
+        nPSText.text = "$" + numberPerSecond.ToString("F1") + " p/second";
     }
 
     void OnDisable()
@@ -63,9 +63,9 @@ public class UIManager_Gameplay : MonoBehaviour
         number = clickButton.number;
 
         if (number == Mathf.Round(number))
-            numberText.text = number.ToString();
+            numberText.text = "$" + number.ToString();
         else
-            numberText.text = number.ToString("F1");
+            numberText.text = "$" + number.ToString("F1");
     }
 
     void UpdateNumberText(float increment)
@@ -73,15 +73,15 @@ public class UIManager_Gameplay : MonoBehaviour
         number = clickButton.number;
 
         if (number == Mathf.Round(number))
-            numberText.text = number.ToString();
+            numberText.text = "$" + number.ToString();
         else
-            numberText.text = number.ToString("F1");
+            numberText.text = "$" + number.ToString("F1");
     }
 
     void UpdateNPSText()
     {
         numberPerSecond = upgradeManager.numberPerSecond;
-        nPSText.text = numberPerSecond.ToString("F1") + " p/second";
+        nPSText.text = "$" + numberPerSecond.ToString("F1") + " p/second";
     }
     #endregion
 
