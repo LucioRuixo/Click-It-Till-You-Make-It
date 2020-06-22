@@ -81,7 +81,7 @@ public class SaveManager : MonoBehaviour
         saveData.moneyPerSecond = gameManager.moneyPerSecond;
         saveData.upgradePurchasedAmount = new List<int>();
 
-        int upgradeAmount = upgradeManager.upgradeAmount;
+        int upgradeAmount = upgradeManager.upgradeScriptableObjects.Count;
         List<UpgradeModel> upgrades = upgradeManager.upgrades;
         for (int i = 0; i < upgradeAmount; i++)
         {

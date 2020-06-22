@@ -1506,7 +1506,7 @@ RectTransform:
   - {fileID: 321916340}
   - {fileID: 2021943856}
   m_Father: {fileID: 1442946560}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -1997,7 +1997,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000029257099}
+  m_AnchoredPosition: {x: 0, y: 0.0009570266}
   m_SizeDelta: {x: 920, y: 400}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1167158825
@@ -2191,8 +2191,8 @@ RectTransform:
   - {fileID: 752981625}
   - {fileID: 1143021451}
   - {fileID: 1028776408}
-  - {fileID: 1512626177}
   - {fileID: 912368219}
+  - {fileID: 1512626177}
   - {fileID: 1707127569}
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -2299,7 +2299,7 @@ RectTransform:
   m_Children:
   - {fileID: 1691110524}
   m_Father: {fileID: 1442946560}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3144,7 +3144,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1542265764}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9998371
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3322,13 +3322,20 @@ MonoBehaviour:
   upgradeButtonPrefab: {fileID: 3810600156117958742, guid: e6658b549d44b2945bff6266da2488ce,
     type: 3}
   upgradeButtonContainer: {fileID: 1669422743}
-  upgrades: []
-  upgradeAmount: 6
-  baseCost: 10
-  costMultiplier: 5
-  baseMPS: 5
-  mPSMultiplier: 7.5
-  names: []
+  upgrades:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  upgradeScriptableObjects:
+  - {fileID: 11400000, guid: 95eeb832801964a4d847d5b9c224737a, type: 2}
+  - {fileID: 11400000, guid: 9c5df34294e79c04ea563c36167696f2, type: 2}
+  - {fileID: 11400000, guid: 932e318ecaf4abc4f99fe8fc9adc2be1, type: 2}
+  - {fileID: 11400000, guid: aee1f8b3676dcea48ab76b3dd99ba860, type: 2}
+  - {fileID: 11400000, guid: b832d52d99e983746923263589f5e9ce, type: 2}
+  - {fileID: 11400000, guid: 61917dab38daaa642a2d07b8c6e7e654, type: 2}
 --- !u!4 &2117948547
 Transform:
   m_ObjectHideFlags: 0
