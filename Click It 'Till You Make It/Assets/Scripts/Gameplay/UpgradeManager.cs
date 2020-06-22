@@ -4,99 +4,67 @@ using UnityEngine;
 
 public class UpgradeManager : MonoBehaviour
 {
-    float updateTimer;
-    float updateTimerTarget;
-    public float numberPerSecond;
-
     public GameManager gameManager;
-
     public GameObject upgradeButtonPrefab;
-
     public Transform upgradeButtonContainer;
 
-    public List<Upgrade> upgrades;
+    public List<UpgradeModel> upgrades;
 
     public static event Action<int> onUpgradeInitialization;
-    public static event Action<float> onNumberUpdate;
-    public static event Action onNPSUpdate;
 
     [Header("Upgrade properties")]
-    public int amount;
+    public int upgradeAmount;
 
     public float baseCost;
     public float costMultiplier;
-    public float baseNPS;
-    public float nPSMultiplier;
+    public float baseMPS;
+    public float mPSMultiplier;
 
     public List<string> names;
 
     void OnEnable()
     {
-        onUpgradeInitialization += InitializeUpgrades;
-        Upgrade.onPurchase += UpdateNPS;
-    }
-
-    void Start()
-    {
-        updateTimer = 0f;
-        updateTimerTarget = 1f;
-        numberPerSecond = 0f;
-
-        if (onUpgradeInitialization != null)
-            onUpgradeInitialization(amount);
-    }
-
-    void Update()
-    {
-        if (!gameManager.gamePaused)
-        {
-            updateTimer += Time.deltaTime;
-
-            if (updateTimer >= updateTimerTarget)
-            {
-                if (onNumberUpdate != null)
-                    onNumberUpdate(numberPerSecond);
-
-                updateTimer -= updateTimerTarget;
-            }
-        }
+        SaveManager.onGameplayLoaded += InitializeUpgrades;
     }
 
     void OnDisable()
     {
-        onUpgradeInitialization -= InitializeUpgrades;
-        Upgrade.onPurchase -= UpdateNPS;
+        SaveManager.onGameplayLoaded -= InitializeUpgrades;
     }
 
-    void InitializeUpgrades(int upgradeAmount)
+    void InitializeUpgrades(SaveManager.SaveData saveData)
     {
+        bool onFileCreation;
+        if (saveData.upgradePurchasedAmount.Count == 0)
+            onFileCreation = true;
+        else
+            onFileCreation = false;
+
         for (int i = 0; i < upgradeAmount; i++)
         {
-            upgrades.Add(Instantiate(upgradeButtonPrefab, upgradeButtonContainer).GetComponent<Upgrade>());
+            upgrades.Add(Instantiate(upgradeButtonPrefab, upgradeButtonContainer).GetComponent<UpgradeModel>());
 
             if (i == 0)
             {
-                upgrades[i].cost = baseCost;
-                upgrades[i].numberPerSecond = baseNPS;
+                upgrades[i].Cost = baseCost;
+                upgrades[i].MoneyPerSecond = baseMPS;
             }
             else
             {
-                upgrades[i].cost = upgrades[i - 1].cost * costMultiplier;
-                upgrades[i].numberPerSecond = upgrades[i - 1].numberPerSecond * nPSMultiplier;
+                upgrades[i].Cost = upgrades[i - 1].Cost * costMultiplier;
+                upgrades[i].MoneyPerSecond = upgrades[i - 1].MoneyPerSecond * mPSMultiplier;
             }
 
+            if (!onFileCreation)
+                upgrades[i].Amount = saveData.upgradePurchasedAmount[i];
+
             if (i < names.Count)
-                upgrades[i]._name = names[i];
+                upgrades[i].Name = names[i];
             else
-                upgrades[i]._name = "Upgrade " + (i + 1).ToString();
+                upgrades[i].Name = "Upgrade " + (i + 1).ToString();
         }
-    }
 
-    void UpdateNPS(float cost, float nPS)
-    {
-        numberPerSecond += nPS;
-
-        if (onNPSUpdate != null)
-            onNPSUpdate();
+        if (onUpgradeInitialization != null)
+            onUpgradeInitialization(upgradeAmount);
     }
 }

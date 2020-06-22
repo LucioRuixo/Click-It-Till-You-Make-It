@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 3810600156117958731}
   - component: {fileID: 3810600156117958728}
   - component: {fileID: 3810600156117958732}
+  - component: {fileID: 8609850826511445616}
+  - component: {fileID: 6593356440329245559}
   m_Layer: 5
   m_Name: Upgrade Button
   m_TagString: Untagged
@@ -122,7 +124,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3810600156117958732}
+      - m_Target: {fileID: 6593356440329245559}
         m_MethodName: Purchase
         m_Mode: 1
         m_Arguments:
@@ -170,10 +172,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae985dee7b9b7b7419903278e77a86d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: 
-  amount: 0
-  numberPerSecond: 0.1
-  cost: 10
+  view: {fileID: 8609850826511445616}
+  Name: 
+  Amount: 0
+  Cost: 0
+  MoneyPerSecond: 0
+--- !u!114 &8609850826511445616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3810600156117958742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22ea766fa55410a459d7f2151db9982d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  model: {fileID: 3810600156117958732}
+  amount: {fileID: 0}
+--- !u!114 &6593356440329245559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3810600156117958742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebd9066b4d7b8684aae226b3746f5feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  model: {fileID: 3810600156117958732}
 --- !u!1 &3810600156736398939
 GameObject:
   m_ObjectHideFlags: 0
@@ -469,7 +499,7 @@ GameObject:
   - component: {fileID: 3810600157136443831}
   - component: {fileID: 3810600157136443828}
   m_Layer: 5
-  m_Name: Number Per Second
+  m_Name: Money Per Second
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

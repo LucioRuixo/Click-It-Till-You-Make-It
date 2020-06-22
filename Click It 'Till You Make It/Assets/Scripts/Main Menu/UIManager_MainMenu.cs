@@ -1,23 +1,34 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class UIManager_MainMenu : MonoBehaviour
 {
     public Button play;
     public Button credits;
     public Button exit;
-
     public GameObject mainScreen;
+    public GameObject savesScreen;
     public GameObject creditsScreen;
 
-    #region Main Screen
-    public void Play()
+    public static event Action<int> onGameLoad;
+
+    public void ReturnToMainScreen(GameObject currentScreen)
     {
-        SceneManager.LoadScene("Gameplay");
+        currentScreen.SetActive(false);
+        mainScreen.SetActive(true);
     }
 
-    public void ShowCredits()
+    #region Main Screen
+
+    public void ShowSavesScene()
+    {
+        mainScreen.SetActive(false);
+        savesScreen.SetActive(true);
+    }
+
+    public void ShowCreditsScreen()
     {
         mainScreen.SetActive(false);
         creditsScreen.SetActive(true);
@@ -29,11 +40,13 @@ public class UIManager_MainMenu : MonoBehaviour
     }
     #endregion
 
-    #region Credits Screen
-    public void Return()
+    #region Saves Screen
+    public void LoadGame(int saveNumber)
     {
-        creditsScreen.SetActive(false);
-        mainScreen.SetActive(true);
+        if (onGameLoad != null)
+            onGameLoad(saveNumber);
+
+        SceneManager.LoadScene("Gameplay");
     }
     #endregion
 }

@@ -1090,11 +1090,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pause: {fileID: 654038053}
-  clickButton: {fileID: 752981629}
+  gameManager: {fileID: 0}
   pauseMenu: {fileID: 1707127568}
-  numberText: {fileID: 1143021452}
-  nPSText: {fileID: 1028776406}
-  upgradeManager: {fileID: 2117948546}
+  moneyText: {fileID: 1143021452}
+  mPSText: {fileID: 1028776406}
 --- !u!1 &752981624
 GameObject:
   m_ObjectHideFlags: 0
@@ -1105,7 +1104,6 @@ GameObject:
   m_Component:
   - component: {fileID: 752981625}
   - component: {fileID: 752981626}
-  - component: {fileID: 752981629}
   m_Layer: 5
   m_Name: Click Button
   m_TagString: Untagged
@@ -1177,8 +1175,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 752981629}
-        m_MethodName: IncreaseNumberOnClick
+      - m_Target: {fileID: 1528329533}
+        m_MethodName: IncreaseMoneyOnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1188,19 +1186,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &752981629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 752981624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 144b3f1e4c2f48c4d993b09438aabc7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  number: 0
 --- !u!1 &847475698
 GameObject:
   m_ObjectHideFlags: 0
@@ -1284,15 +1269,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 721556173}
-        m_MethodName: Exit
-        m_Mode: 1
+        m_MethodName: ExitGameplay
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &847475701
 MonoBehaviour:
@@ -1488,50 +1473,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 851148289}
   m_CullTransparentMesh: 0
---- !u!1 &899424868
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 899424870}
-  - component: {fileID: 899424869}
-  m_Layer: 0
-  m_Name: Game Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &899424869
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 899424868}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36d60dd0c4174844b827e9060b852237, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gamePaused: 0
---- !u!4 &899424870
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 899424868}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.40052295, y: 0.16259223, z: 214.71582}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &912368218
 GameObject:
   m_ObjectHideFlags: 0
@@ -1565,7 +1506,7 @@ RectTransform:
   - {fileID: 321916340}
   - {fileID: 2021943856}
   m_Father: {fileID: 1442946560}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -1646,7 +1587,7 @@ GameObject:
   - component: {fileID: 1028776407}
   - component: {fileID: 1028776406}
   m_Layer: 5
-  m_Name: NPS Text
+  m_Name: MPS Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1877,7 +1818,7 @@ GameObject:
   - component: {fileID: 1143021453}
   - component: {fileID: 1143021452}
   m_Layer: 5
-  m_Name: Number Text
+  m_Name: Money Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2056,7 +1997,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00002898477}
+  m_AnchoredPosition: {x: 0, y: 0.000029257099}
   m_SizeDelta: {x: 920, y: 400}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1167158825
@@ -2250,8 +2191,8 @@ RectTransform:
   - {fileID: 752981625}
   - {fileID: 1143021451}
   - {fileID: 1028776408}
-  - {fileID: 912368219}
   - {fileID: 1512626177}
+  - {fileID: 912368219}
   - {fileID: 1707127569}
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -2358,7 +2299,7 @@ RectTransform:
   m_Children:
   - {fileID: 1691110524}
   m_Father: {fileID: 1442946560}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2402,6 +2343,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1512626176}
   m_CullTransparentMesh: 0
+--- !u!1 &1528329532
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1528329534}
+  - component: {fileID: 1528329533}
+  m_Layer: 0
+  m_Name: Game Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1528329533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1528329532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36d60dd0c4174844b827e9060b852237, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gamePaused: 0
+  money: 0
+  moneyPerSecond: 0
+--- !u!4 &1528329534
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1528329532}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1542265763
 GameObject:
   m_ObjectHideFlags: 0
@@ -2934,8 +2921,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 721556173}
-        m_MethodName: ReturnToMainMenu
-        m_Mode: 1
+        m_MethodName: ExitGameplay
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3157,7 +3144,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1542265764}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.99999565
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3212,7 +3199,7 @@ GameObject:
   - component: {fileID: 2067951424}
   - component: {fileID: 2067951423}
   m_Layer: 5
-  m_Name: Frame
+  m_Name: Pause Menu Button Container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3331,17 +3318,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cefd4511a02aa534b8cfc8bac1d31cc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberPerSecond: 0
-  gameManager: {fileID: 899424869}
+  gameManager: {fileID: 1528329533}
   upgradeButtonPrefab: {fileID: 3810600156117958742, guid: e6658b549d44b2945bff6266da2488ce,
     type: 3}
   upgradeButtonContainer: {fileID: 1669422743}
   upgrades: []
-  amount: 6
+  upgradeAmount: 6
   baseCost: 10
   costMultiplier: 5
-  baseNPS: 0.1
-  nPSMultiplier: 7.5
+  baseMPS: 5
+  mPSMultiplier: 7.5
   names: []
 --- !u!4 &2117948547
 Transform:
@@ -3351,7 +3337,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2117948545}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.2689867, y: 0.043411642, z: 58.089703}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

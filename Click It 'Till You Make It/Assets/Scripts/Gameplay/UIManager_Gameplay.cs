@@ -6,47 +6,34 @@ using System;
 
 public class UIManager_Gameplay : MonoBehaviour
 {
-    float number;
-    float numberPerSecond;
+    float money;
+    float moneyPerSecond;
 
     public Button pause;
-
-    public ClickButton clickButton;
-
+    public GameManager gameManager;
     public GameObject pauseMenu;
-
-    public TextMeshProUGUI numberText;
-    public TextMeshProUGUI nPSText;
-
-    public UpgradeManager upgradeManager;
+    public TextMeshProUGUI moneyText;
+    public TextMeshProUGUI mPSText;
 
     public static event Action<bool> onPause;
+    public static event Action onGameplayExit;
 
     void OnEnable()
     {
-        ClickButton.onNumberIncrease += UpdateNumberText;
-        ClickButton.onUpgradePayment += UpdateNumberText;
-
-        UpgradeManager.onNumberUpdate += UpdateNumberText;
-        UpgradeManager.onNPSUpdate += UpdateNPSText;
-    }
-
-    void Start()
-    {
-        number = 0;
-        numberPerSecond = 0;
-
-        numberText.text = "$" + number.ToString();
-        nPSText.text = "$" + numberPerSecond.ToString("F1") + " p/second";
+        GameManager.onMoneyIncrease += UpdateMoneyText;
+        GameManager.onUpgradePayment += UpdateMoneyText;
+        SaveManager.onGameplayLoaded += InitializeTexts;
+        GameManager.onMoneyUpdate += UpdateMoneyText;
+        GameManager.onMPSUpdate += UpdateMPSText;
     }
 
     void OnDisable()
     {
-        ClickButton.onNumberIncrease -= UpdateNumberText;
-        ClickButton.onUpgradePayment -= UpdateNumberText;
-
-        UpgradeManager.onNumberUpdate -= UpdateNumberText;
-        UpgradeManager.onNPSUpdate -= UpdateNPSText;
+        GameManager.onMoneyIncrease -= UpdateMoneyText;
+        GameManager.onUpgradePayment -= UpdateMoneyText;
+        SaveManager.onGameplayLoaded -= InitializeTexts;
+        GameManager.onMoneyUpdate -= UpdateMoneyText;
+        GameManager.onMPSUpdate -= UpdateMPSText;
     }
 
     public void Pause(bool state)
@@ -57,43 +44,43 @@ public class UIManager_Gameplay : MonoBehaviour
             onPause(state);
     }
 
-    #region Gameplay
-    void UpdateNumberText()
+    #region Gameplay UI
+    void InitializeTexts(SaveManager.SaveData saveData)
     {
-        number = clickButton.number;
+        money = saveData.money;
+        moneyPerSecond = saveData.moneyPerSecond;
 
-        if (number == Mathf.Round(number))
-            numberText.text = "$" + number.ToString();
-        else
-            numberText.text = "$" + number.ToString("F1");
+        moneyText.text = "$" + money;
+        mPSText.text = "$" + moneyPerSecond.ToString("F1") + " p/second";
     }
 
-    void UpdateNumberText(float increment)
+    void UpdateMoneyText(float newMoney)
     {
-        number = clickButton.number;
+        money = newMoney;
 
-        if (number == Mathf.Round(number))
-            numberText.text = "$" + number.ToString();
+        if (money == Mathf.Round(money))
+            moneyText.text = "$" + money;
         else
-            numberText.text = "$" + number.ToString("F1");
+            moneyText.text = "$" + money.ToString("F1");
     }
 
-    void UpdateNPSText()
+    void UpdateMPSText(float newMPS)
     {
-        numberPerSecond = upgradeManager.numberPerSecond;
-        nPSText.text = "$" + numberPerSecond.ToString("F1") + " p/second";
+        moneyPerSecond = newMPS;
+        mPSText.text = "$" + moneyPerSecond.ToString("F1") + " p/second";
     }
     #endregion
 
     #region Pause Menu
-    public void ReturnToMainMenu()
+    public void ExitGameplay(bool alsoExitGame)
     {
-        SceneManager.LoadScene("Main Menu");
-    }
+        if (onGameplayExit != null)
+            onGameplayExit();
 
-    public void Exit()
-    {
-        Application.Quit();
+        if (!alsoExitGame)
+            SceneManager.LoadScene("Main Menu");
+        else
+            Application.Quit();
     }
     #endregion
 }
