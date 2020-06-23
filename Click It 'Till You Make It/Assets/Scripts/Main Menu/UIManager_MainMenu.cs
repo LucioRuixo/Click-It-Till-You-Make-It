@@ -21,7 +21,6 @@ public class UIManager_MainMenu : MonoBehaviour
     }
 
     #region Main Screen
-
     public void ShowSavesScene()
     {
         mainScreen.SetActive(false);

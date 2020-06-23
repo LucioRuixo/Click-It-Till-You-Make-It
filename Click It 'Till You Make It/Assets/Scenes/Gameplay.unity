@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 60779656}
   - component: {fileID: 60779655}
   - component: {fileID: 60779654}
+  - component: {fileID: 60779657}
   m_Layer: 5
   m_Name: Resume
   m_TagString: Untagged
@@ -251,6 +252,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 60779652}
   m_CullTransparentMesh: 0
+--- !u!114 &60779657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60779652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce5570100e7c9c643925d22d6598c399, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &85579860
 GameObject:
   m_ObjectHideFlags: 0
@@ -928,6 +941,7 @@ GameObject:
   - component: {fileID: 654038055}
   - component: {fileID: 654038054}
   - component: {fileID: 654038053}
+  - component: {fileID: 654038056}
   m_Layer: 5
   m_Name: Pause Button
   m_TagString: Untagged
@@ -1046,6 +1060,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 654038051}
   m_CullTransparentMesh: 0
+--- !u!114 &654038056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654038051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce5570100e7c9c643925d22d6598c399, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &721556171
 GameObject:
   m_ObjectHideFlags: 0
@@ -1104,8 +1130,9 @@ GameObject:
   m_Component:
   - component: {fileID: 752981625}
   - component: {fileID: 752981626}
+  - component: {fileID: 752981627}
   m_Layer: 5
-  m_Name: Click Button
+  m_Name: Money Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1186,6 +1213,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &752981627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752981624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4735657c6788fa44969bcbe8f2697ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &847475698
 GameObject:
   m_ObjectHideFlags: 0
@@ -1198,6 +1237,7 @@ GameObject:
   - component: {fileID: 847475702}
   - component: {fileID: 847475701}
   - component: {fileID: 847475700}
+  - component: {fileID: 847475703}
   m_Layer: 5
   m_Name: Exit Game
   m_TagString: Untagged
@@ -1316,6 +1356,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 847475698}
   m_CullTransparentMesh: 0
+--- !u!114 &847475703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847475698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce5570100e7c9c643925d22d6598c399, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &851148289
 GameObject:
   m_ObjectHideFlags: 0
@@ -1997,7 +2049,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.0009570266}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 920, y: 400}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1167158825
@@ -2850,6 +2902,7 @@ GameObject:
   - component: {fileID: 1693848426}
   - component: {fileID: 1693848425}
   - component: {fileID: 1693848424}
+  - component: {fileID: 1693848427}
   m_Layer: 5
   m_Name: Return To Main Menu
   m_TagString: Untagged
@@ -2968,6 +3021,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1693848422}
   m_CullTransparentMesh: 0
+--- !u!114 &1693848427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693848422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce5570100e7c9c643925d22d6598c399, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1707127568
 GameObject:
   m_ObjectHideFlags: 0
@@ -3144,7 +3209,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1542265764}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9998371
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
